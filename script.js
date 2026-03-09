@@ -8,7 +8,7 @@ const profile = {
   about:
     "Entry-level developer with hands-on experience building an end-to-end MT5 AI trading platform using Python, MetaTrader5, TensorFlow, XGBoost, Flask, and SQLite/PostgreSQL.\n\nBuilt features across the full workflow: data ingestion, feature engineering, model training/retraining, signal generation, risk controls, execution support, monitoring dashboards, and audit-ready logging/documentation.\n\nAlso experienced in IT support (networking, CCTV systems, PC troubleshooting) and comfortable working with end-users, documentation, and incident tracking.\n\nCurrently seeking a junior role where I can contribute quickly, learn from experienced engineers, and deliver reliable, maintainable solutions aligned with business goals.",
   links: {
-    github: "https://github.com/tanginamojepoy",
+    github: "https://github.com/LittleDev-20",
     linkedin: "https://www.linkedin.com/in/john-lenard-bernarte-4a7b25269/",
     email: "",
     resume: "", // e.g. "resume.pdf"
