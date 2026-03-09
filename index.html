@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Portfolio</title>
+    <meta
+      name="description"
+      content="Personal portfolio: experience, projects, skills, and contact."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <div class="blob blob--1"></div>
+      <div class="blob blob--2"></div>
+      <div class="blob blob--3"></div>
+    </div>
+
+    <header class="container header">
+      <a class="logo" href="#top" aria-label="Go to top">Portfolio</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top" class="container main">
+      <section class="hero">
+        <div class="hero__left">
+          <p id="location" class="muted"></p>
+          <h1 id="name" class="title"></h1>
+          <p id="role" class="subtitle"></p>
+          <p id="tagline" class="lead"></p>
+
+          <div class="actions">
+            <a id="github" class="btn btn--ghost" target="_blank" rel="noreferrer"
+              >GitHub</a
+            >
+            <a
+              id="linkedin"
+              class="btn btn--ghost"
+              target="_blank"
+              rel="noreferrer"
+              >LinkedIn</a
+            >
+            <a id="resume" class="btn btn--ghost" target="_blank" rel="noreferrer"
+              >Resume</a
+            >
+            <a id="emailCta" class="btn btn--primary">Email Me</a>
+          </div>
+        </div>
+
+        <aside class="card hero__right" aria-label="Highlights">
+          <p class="card__kicker">Highlights</p>
+          <ul class="checklist">
+            <li>IT support + troubleshooting background</li>
+            <li>Built an MT5 AI trading platform (Python + ML)</li>
+            <li>Comfortable with documentation and user support</li>
+          </ul>
+          <p class="tip">
+            Open to junior roles and continuous learning.
+          </p>
+        </aside>
+      </section>
+
+      <section id="about" class="section">
+        <div class="section__title">
+          <h2>About</h2>
+          <p class="muted">A short introduction.</p>
+        </div>
+        <div class="card">
+          <p id="aboutText" class="prose"></p>
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="section__title">
+          <h2>Experience</h2>
+          <p class="muted">Your job history and achievements.</p>
+        </div>
+        <div id="experienceList" class="stack"></div>
+      </section>
+
+      <section id="education" class="section">
+        <div class="section__title">
+          <h2>Education</h2>
+          <p class="muted">School and degree.</p>
+        </div>
+        <div id="educationList" class="stack"></div>
+      </section>
+
+      <section id="certificates" class="section">
+        <div class="section__title">
+          <h2>Certificates</h2>
+          <p class="muted">Training, virtual experience programs, and badges.</p>
+        </div>
+        <div id="certificateGrid" class="grid grid--cert"></div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section__header">
+          <div class="section__title">
+            <h2>Projects</h2>
+            <p class="muted">Search by keyword.</p>
+          </div>
+          <label class="search" aria-label="Search projects">
+            <input id="projectSearch" type="search" placeholder="Search projects..." />
+          </label>
+        </div>
+        <div id="projectGrid" class="grid"></div>
+        <p id="projectEmpty" class="muted hidden">No projects found.</p>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="section__title">
+          <h2>Skills</h2>
+          <p class="muted">Tools and technologies.</p>
+        </div>
+        <div id="skillChips" class="chips"></div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="section__title">
+          <h2>Contact</h2>
+          <p class="muted">Sends an email using your mail app.</p>
+        </div>
+        <div class="card">
+          <form id="contactForm" class="form">
+            <div class="form__row">
+              <label>
+                <span class="muted">Your name</span>
+                <input name="name" autocomplete="name" required />
+              </label>
+              <label>
+                <span class="muted">Your email</span>
+                <input name="fromEmail" type="email" autocomplete="email" required />
+              </label>
+            </div>
+            <label>
+              <span class="muted">Message</span>
+              <textarea name="message" rows="6" required></textarea>
+            </label>
+            <div class="form__actions">
+              <button class="btn btn--primary" type="submit">Send</button>
+              <button class="btn btn--ghost" type="reset">Reset</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>
+          <span id="copyright"></span>
+          <span class="muted">•</span>
+          <span class="muted">Static site (XAMPP-ready)</span>
+        </p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
