@@ -13,7 +13,23 @@ const profile = {
     email: "",
     resume: "", // e.g. "resume.pdf"
   },
-  skills: ["React", "JavaScript", "HTML/CSS", "Responsive UI", "REST APIs", "Git/GitHub"],
+  skills: [
+    "IT Support",
+    "Technical Troubleshooting",
+    "Network Setup (LAN/Cabling)",
+    "CCTV Installation & Configuration",
+    "PC Hardware & Software Maintenance",
+    "Python",
+    "MetaTrader5 Integration",
+    "TensorFlow",
+    "XGBoost",
+    "Flask",
+    "SQLite/PostgreSQL",
+    "JavaScript",
+    "React",
+    "HTML/CSS",
+    "Git/GitHub",
+  ],
   experience: [
     {
       company: "Red Doorz KBL Transient Inn",
