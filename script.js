@@ -287,6 +287,26 @@ const profile = {
         "assets/pos/shot-13.png",
         "assets/pos/shot-14.png",
       ],
+      overview: {
+        purpose:
+          "A web-based point-of-sale system designed to speed up order processing, improve cashier workflow, and give clearer sales visibility through a dashboard.",
+        includes: [
+          "Product and menu item listing with category-based navigation",
+          "Order ticket creation with quantity updates and item removal",
+          "Checkout flow with totals, payment entry, and balance calculation",
+          "Sales dashboard views for quick monitoring of transactions",
+          "Responsive interface for desktop and tablet usage",
+        ],
+        techStack: ["React", "JavaScript", "HTML", "CSS"],
+        flow: [
+          "Cashier selects products and builds the customer order",
+          "System computes subtotal, totals, and payment balance in real time",
+          "Order is finalized and recorded in transaction history",
+          "Dashboard surfaces key sales information for daily operations",
+        ],
+        transparency:
+          "This project demonstrates POS UI and workflow logic; production deployment typically requires backend services for inventory, user roles, and secure payment integration.",
+      },
       tags: ["UI/UX", "React"],
       repo: "https://github.com/yourusername/pos-app",
       live: "",
