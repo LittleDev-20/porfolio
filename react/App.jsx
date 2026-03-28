@@ -1,58 +1,41 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 
 const profile = {
-  name: "Your Name",
-  role: "Frontend / React Developer",
-  location: "Philippines",
-  tagline: "I build clean, fast, user-friendly web apps.",
+  name: "Johnlenard Bernarte",
+  role: "Junior Web Developer | IT Support | Technical Support",
+  location: "San Fernando, Philippines",
+  tagline:
+    "I build practical, user-focused web interfaces and support real-world operations with reliable technical problem-solving.",
   about:
-    "Write a short intro about you here. Mention what you build, what tools you use, and what you're learning now.",
+    "Entry-level developer with hands-on experience building practical front-end projects with clean, responsive UI and strong information hierarchy.",
   links: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    email: "you@email.com",
+    github: "https://github.com/LittleDev-20",
+    linkedin: "https://www.linkedin.com/in/john-lenard-bernarte-4a7b25269/",
+    email: "",
     resume: "",
   },
-  skills: [
-    "React",
-    "JavaScript",
-    "HTML/CSS",
-    "Responsive UI",
-    "REST APIs",
-    "Git/GitHub",
-  ],
-  experience: [
-    {
-      company: "Company Name",
-      title: "Job Title",
-      location: "City, Country",
-      start: "2024",
-      end: "Present",
-      highlights: [
-        "Shipped feature X that improved metric Y.",
-        "Worked with API integrations and UI polish.",
-      ],
-    },
-  ],
   projects: [
     {
-      title: "Trading Bot UI",
+      title: "Atlas TradeOps Frontend",
       description:
-        "A dashboard interface for monitoring signals, risk settings, and performance.",
-      tags: ["React", "Charts", "UI"],
-      repo: "https://github.com/yourusername/trading-bot-ui",
-      live: "",
+        "A dark-themed operator console frontend with secure login, dashboard metrics, and risk-focused workflow sections.",
+      tags: ["Frontend", "Trading UI", "Dashboard", "Responsive UI"],
+      image: "assets/atlas-tradeops/shot-04.png",
+      repo: "",
+      live: "https://frontend-web-three-alpha.vercel.app/login?next=%2Fportfolio",
     },
   ],
 };
 
 function IconLink({ href, label }) {
+  const hasHref = Boolean(href && href.trim());
   return (
     <a
-      href={href}
+      href={hasHref ? href : "#"}
       target="_blank"
       rel="noreferrer"
-      className="px-3 py-2 rounded-lg border border-white/10 hover:border-white/25 hover:bg-white/5 transition"
+      aria-disabled={!hasHref}
+      className="px-3 py-2 rounded-lg border border-white/10 hover:border-white/25 hover:bg-white/5 transition aria-disabled:opacity-50 aria-disabled:pointer-events-none"
     >
       {label}
     </a>
@@ -76,13 +59,14 @@ export default function App() {
     if (!q) return profile.projects;
     return profile.projects.filter((p) => {
       const blob =
-        `${p.title} ${p.description} ${(p.tags || []).join(" ")}`.toLowerCase();
+        `${p.title} ${p.description} ${(p.tags || []).join(" ")} ${p.repo || ""} ${p.live || ""}`.toLowerCase();
       return blob.includes(q);
     });
   }, [query]);
 
   const emailHref = useMemo(() => {
-    const subject = encodeURIComponent(`Portfolio Inquiry — ${profile.name}`);
+    if (!profile.links.email) return "#";
+    const subject = encodeURIComponent(`Portfolio Inquiry - ${profile.name}`);
     const body = encodeURIComponent(
       `Hi ${profile.name},\n\nI saw your portfolio and would like to connect.\n\nMy message:\n`
     );
@@ -104,7 +88,8 @@ export default function App() {
               <IconLink href={profile.links.linkedin} label="LinkedIn" />
               <a
                 href={emailHref}
-                className="px-3 py-2 rounded-lg bg-white text-black hover:bg-white/90 transition font-medium"
+                aria-disabled={emailHref === "#"}
+                className="px-3 py-2 rounded-lg bg-white text-black hover:bg-white/90 transition font-medium aria-disabled:opacity-50 aria-disabled:pointer-events-none"
               >
                 Email Me
               </a>
@@ -120,33 +105,8 @@ export default function App() {
         </section>
 
         <section className="mt-12">
-          <SectionTitle title="Experience" subtitle="Recent roles and responsibilities." />
-          <div className="grid gap-5">
-            {profile.experience.map((job) => (
-              <div
-                key={`${job.company}-${job.title}-${job.start}`}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6"
-              >
-                <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-                  <div>
-                    <h3 className="text-xl font-semibold">{job.title}</h3>
-                    <p className="text-white/75 mt-1">
-                      {job.company}
-                      {job.location ? <span className="text-white/60"> • {job.location}</span> : null}
-                    </p>
-                  </div>
-                  <div className="text-sm text-white/60">
-                    {job.start} — {job.end}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-12">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <SectionTitle title="Projects" subtitle="Some work (filter by keyword)." />
+            <SectionTitle title="Projects" subtitle="Featured work with live link." />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -161,18 +121,55 @@ export default function App() {
                 key={p.title}
                 className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-white/20 transition"
               >
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={`${p.title} screenshot`}
+                    className="w-full aspect-video object-cover rounded-lg border border-white/10 mb-4"
+                  />
+                ) : null}
                 <h3 className="text-xl font-semibold">{p.title}</h3>
                 <p className="text-white/70 mt-2">{p.description}</p>
+
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {(p.tags || []).map((tag) => (
+                    <span key={tag} className="px-2.5 py-1 rounded-full text-sm border border-white/15 text-white/80">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-3 mt-5">
+                  {p.repo ? (
+                    <a
+                      href={p.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-3 py-2 rounded-lg border border-white/15 hover:border-white/25 hover:bg-white/5 transition"
+                    >
+                      Source Code
+                    </a>
+                  ) : null}
+                  {p.live ? (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-3 py-2 rounded-lg bg-white text-black hover:bg-white/90 transition font-medium"
+                    >
+                      View Live Project
+                    </a>
+                  ) : null}
+                </div>
               </div>
             ))}
           </div>
         </section>
 
         <footer className="mt-14 py-8 text-center text-white/60">
-          © {new Date().getFullYear()} {profile.name}. Built with React.
+          (c) {new Date().getFullYear()} {profile.name}. Built with React.
         </footer>
       </div>
     </div>
   );
 }
-

@@ -1,12 +1,13 @@
-/* Edit this object to update your portfolio. */
+﻿/* Edit this object to update your portfolio. */
 const profile = {
   name: "Johnlenard Bernarte",
-  role: "IT Support / Technical Support / Web Developer",
+  role: "Junior Web Developer | IT Support | Technical Support",
   location: "San Fernando, Philippines",
-  tagline: "I troubleshoot systems, support users, and build practical web apps.",
+  tagline:
+    "I build practical, user-focused web interfaces and support real-world operations with reliable technical problem-solving.",
   birthdateISO: "2001-05-20",
   about:
-    "Entry-level developer with hands-on experience building an end-to-end MT5 AI trading platform using Python, MetaTrader5, TensorFlow, XGBoost, Flask, and SQLite/PostgreSQL.\n\nBuilt features across the full workflow: data ingestion, feature engineering, model training/retraining, signal generation, risk controls, execution support, monitoring dashboards, and audit-ready logging/documentation.\n\nAlso experienced in IT support (networking, CCTV systems, PC troubleshooting) and comfortable working with end-users, documentation, and incident tracking.\n\nCurrently seeking a junior role where I can contribute quickly, learn from experienced engineers, and deliver reliable, maintainable solutions aligned with business goals.",
+    "Entry-level developer with hands-on experience building practical front-end projects such as a hospitality management dashboard and a POS web interface, with a focus on clean layout systems and responsive UI.\n\nI also bring IT support experience across networking, CCTV systems, PC troubleshooting, and user-facing technical assistance, which helps me communicate clearly and solve issues quickly.\n\nCurrently seeking a junior developer role where I can contribute reliable work, keep learning from senior engineers, and deliver maintainable solutions aligned with business goals.",
   links: {
     github: "https://github.com/LittleDev-20",
     linkedin: "https://www.linkedin.com/in/john-lenard-bernarte-4a7b25269/",
@@ -177,113 +178,52 @@ const profile = {
   ],
   projects: [
     {
-      title: "Trading Bot UI",
+      featured: true,
+      status: "Featured",
+      kicker: "Trading Dashboard",
+      title: "Atlas TradeOps Frontend",
       description:
-        "An end-to-end algorithmic trading platform with MT5 integration, risk controls, ML pipelines, and monitoring dashboards.",
-      image: "assets/trading-bot.png",
+        "A dark-themed operator console frontend for live trading workflows, including secure access, portfolio health snapshots, risk panels, and assistant support UI.",
+      image: "assets/atlas-tradeops/shot-04.png",
       images: [
-        "assets/trading-bot/shot-01.jfif",
-        "assets/trading-bot/shot-02.jfif",
-        "assets/trading-bot/shot-03.jfif",
-        "assets/trading-bot/shot-04.jfif",
-        "assets/trading-bot/shot-05.jfif",
-        "assets/trading-bot/shot-06.jfif",
-        "assets/trading-bot/shot-07.jfif",
-        "assets/trading-bot/shot-08.jfif",
-        "assets/trading-bot/shot-09.jfif",
-        "assets/trading-bot/shot-10.jfif",
-        "assets/trading-bot/shot-11.jfif",
-        "assets/trading-bot/shot-12.jfif",
-        "assets/trading-bot/shot-13.jfif",
-        "assets/trading-bot/shot-14.jfif",
+        "assets/atlas-tradeops/shot-01.png",
+        "assets/atlas-tradeops/shot-02.png",
+        "assets/atlas-tradeops/shot-03.png",
+        "assets/atlas-tradeops/shot-04.png",
+        "assets/atlas-tradeops/shot-05.png",
+        "assets/atlas-tradeops/shot-06.png",
+        "assets/atlas-tradeops/shot-07.png",
+        "assets/atlas-tradeops/shot-08.png",
+        "assets/atlas-tradeops/shot-09.png",
       ],
       overview: {
         purpose:
-          "A full algorithmic trading platform that connects to MT5, processes market/news data, trains ML models, generates trading signals, applies risk controls, executes trades, and provides monitoring dashboards with audit logs.",
+          "This frontend is designed for fast operator decision support with a clear information hierarchy across login, dashboard, risk, and assistant views.",
         includes: [
-          "Live trading integration with MetaTrader 5",
-          "Rule-based + ML-based signal generation",
-          "Multi-asset support (forex/crypto/indices/commodities via configured symbols)",
-          "Risk management engine (position sizing, SL/TP, drawdown controls)",
-          "Backtesting and performance analysis tools",
-          "Model training and retraining workflows",
-          "News/sentiment integration",
-          "Desktop and web monitoring interfaces",
-          "Logging, journaling, diagnostics, and transparency documentation",
+          "Secure sign-in/register layout with operator-focused messaging",
+          "Trading overview cards for capital, equity, PnL, positions, and risk status",
+          "Decision-feed section and risk-control panel framing",
+          "Integrated assistant panel UI for guided operational prompts",
+          "Consistent dark card system with strong visual hierarchy",
+          "Responsive behavior tuned for desktop and tablet use",
         ],
-        techStack: [
-          "Python 3.10+",
-          "MetaTrader5 API",
-          "pandas, numpy",
-          "TensorFlow, XGBoost, joblib",
-          "Flask, Tkinter, HTML/CSS/JS",
-          "SQLite (+ PostgreSQL support)",
-          "python-dotenv, PyYAML, requests, pytz",
-          "Git + GitHub",
-        ],
+        techStack: ["Next.js", "React", "JavaScript", "HTML", "CSS"],
         flow: [
-          "Ingest data from MT5 and connected data/news sources",
-          "Engineer features from price/time-series/news context",
-          "Generate signals using ML models + strategy logic",
-          "Validate risk rules before any order action",
-          "Execute/manage trades via MT5 API (or run in analysis/backtest modes)",
-          "Log decisions, orders, errors, and metrics",
-          "Display state in dashboards and monitoring tools",
-        ],
-        training: [
-          "Collect and preprocess data per symbol/timeframe",
-          "Build technical/statistical features",
-          "Train models (Transformer/XGBoost pipelines where configured)",
-          "Run experiments and validation (time-aware checks)",
-          "Export artifacts (joblib/saved models/scalers)",
-          "Compare performance and generate reports",
-          "Retraining scripts/schedulers for periodic refresh",
-        ],
-        backtesting: [
-          "Multi-period backtests (short-term to long-range windows)",
-          "Scenario comparisons (symbols, risk settings, rule variants)",
-          "Artifacts: equity curves, breakdown JSONs, charts, reports",
-          "Profit/risk diagnostics and contributor analysis",
-          "Debug tools for signal and execution behavior verification",
-        ],
-        riskControls: [
-          "Trade filters and confidence thresholds",
-          "Position sizing logic",
-          "Stop-loss / take-profit policies",
-          "Volatility- and rule-aware constraints",
-          "Event logging and journal persistence",
-          "Failsafe diagnostics and operational monitoring",
-        ],
-        interfaces: [
-          "Desktop app (trading_app_enhanced.py) for direct operation",
-          "Web dashboards/APIs for remote visibility and control",
-          "Monitoring services for health/status/error tracking",
-          "Batch scripts and launchers for fast startup of workflows",
-        ],
-        approach: [
-          "Modular layers: data → models → strategy → execution → monitoring",
-          "Iterative delivery (risk, news, diagnostics, UI additions)",
-          "Parallel research (backtests/training) and operations (live monitoring)",
-          "Documentation-first transparency for architecture and limitations",
-        ],
-        skills: [
-          "Python engineering and architecture",
-          "MT5 execution and broker integration basics",
-          "Quant trading and risk management fundamentals",
-          "Time-series ML training and validation",
-          "Data engineering and pipeline reliability",
-          "Observability, debugging, incident handling",
-          "Deployment/ops and environment management",
-          "Clear documentation and communication",
+          "Authenticate operator and route to the trading console",
+          "Surface core account, exposure, and risk metrics immediately",
+          "Expose ranked opportunity context and control-state feedback",
+          "Support follow-up investigation through embedded assistant workflows",
         ],
         transparency:
-          "This is a decision-support and execution system with auditability, not a guaranteed-profit tool. Performance depends on market regime, execution quality, data quality, and risk discipline.",
+          "This portfolio entry highlights frontend UX and presentation. Live trading decisions still depend on backend services, data quality, and policy controls.",
       },
-      tags: ["UI", "Charts", "React"],
-      repo: "https://github.com/tanginamojepoy/MT5_EA_Project_backup_20260302",
-      live: "",
+      tags: ["Frontend", "Trading UI", "Dashboard", "Responsive UI"],
+      repo: "",
+      live: "https://frontend-web-three-alpha.vercel.app/login?next=%2Fportfolio",
     },
     {
+      status: "Case Study",
+      kicker: "POS Workflow",
       title: "POS Web App",
       description: "A modern POS interface with tickets, orders, and dashboard pages.",
       image: "assets/pos/shot-01.png",
@@ -323,46 +263,29 @@ const profile = {
         transparency:
           "This project demonstrates POS UI and workflow logic; production deployment typically requires backend services for inventory, user roles, and secure payment integration.",
       },
-      tags: ["UI/UX", "React"],
-      repo: "https://github.com/yourusername/pos-app",
+      tags: ["React", "UI/UX", "Operational Dashboard"],
+      repo: "",
       live: "",
     },
     {
-      title: "Website Project",
+      status: "UI Build",
+      kicker: "Responsive Website",
+      title: "Responsive Website UI",
       description:
-        "A responsive website UI with multiple pages/sections (screenshots included).",
+        "A multi-section responsive website build focused on clean composition, scalable layout patterns, and reusable front-end components.",
       image: "assets/website/shot-03.png",
       images: [
-        "assets/website/shot-01.png",
-        "assets/website/shot-02.png",
         "assets/website/shot-03.png",
-        "assets/website/shot-04.png",
-        "assets/website/shot-05.png",
-        "assets/website/shot-06.png",
-        "assets/website/shot-07.png",
-        "assets/website/shot-08.png",
         "assets/website/shot-09.png",
-        "assets/website/shot-10.png",
-        "assets/website/shot-11.png",
         "assets/website/shot-12.png",
-        "assets/website/shot-13.png",
-        "assets/website/shot-14.png",
-        "assets/website/shot-15.png",
-        "assets/website/shot-16.png",
         "assets/website/shot-17.png",
-        "assets/website/shot-18.png",
-        "assets/website/shot-19.png",
-        "assets/website/shot-20.png",
-        "assets/website/shot-21.png",
-        "assets/website/shot-22.png",
-        "assets/website/shot-23.png",
         "assets/website/shot-24.png",
       ],
       overview: {
         purpose:
           "A front-end website project focused on clean UI, responsive layout, and reusable sections suitable for a small business or portfolio-style site.",
         includes: [
-          "Responsive layout (mobile → desktop)",
+          "Responsive layout (mobile to desktop)",
           "Navigation and section-based structure",
           "Reusable UI components and consistent styling",
           "Image/screenshot gallery for showcasing pages",
@@ -378,7 +301,7 @@ const profile = {
         transparency:
           "This is a UI/website build for demonstrating front-end skills; functionality depends on the chosen backend (if needed).",
       },
-      tags: ["Website", "UI", "HTML/CSS", "JavaScript"],
+      tags: ["Website", "HTML/CSS", "JavaScript", "Responsive Design"],
       repo: "",
       live: "",
     },
@@ -437,6 +360,25 @@ function svgPlaceholderDataUrl(title) {
   <text x="120" y="285" font-size="26" fill="rgba(255,255,255,0.72)" font-family="system-ui,Segoe UI,Roboto,Arial">${safe}</text>
   <text x="120" y="360" font-size="22" fill="rgba(255,255,255,0.70)" font-family="system-ui,Segoe UI,Roboto,Arial">Put the file in: assets/certificates/</text>
   <text x="120" y="398" font-size="22" fill="rgba(255,255,255,0.70)" font-family="system-ui,Segoe UI,Roboto,Arial">Then refresh this page.</text>
+</svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+function projectPlaceholderDataUrl(title) {
+  const safe = String(title || "Project preview").slice(0, 60);
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1f3a"/>
+      <stop offset="1" stop-color="#081322"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <rect x="86" y="76" width="1108" height="568" rx="24" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
+  <text x="140" y="220" font-size="48" fill="rgba(255,255,255,0.92)" font-family="Segoe UI,sans-serif">Preview unavailable</text>
+  <text x="140" y="290" font-size="28" fill="rgba(255,255,255,0.72)" font-family="Segoe UI,sans-serif">${safe}</text>
+  <text x="140" y="368" font-size="24" fill="rgba(255,255,255,0.64)" font-family="Segoe UI,sans-serif">Add or fix project image path and refresh.</text>
 </svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
@@ -666,7 +608,7 @@ function renderExperience() {
     const meta = document.createElement("p");
     meta.className = "job__meta muted";
     const metaParts = [job.company, job.type, job.workMode, job.location].filter(Boolean);
-    meta.textContent = metaParts.join(" • ");
+    meta.textContent = metaParts.join(" | ");
 
     left.appendChild(title);
     left.appendChild(meta);
@@ -675,7 +617,7 @@ function renderExperience() {
     range.className = "job__range";
     const start = job.start || "";
     const end = job.end || "";
-    range.textContent = start && end ? `${start} — ${end}` : start || end;
+    range.textContent = start && end ? `${start} - ${end}` : start || end;
 
     top.appendChild(left);
     top.appendChild(range);
@@ -740,7 +682,7 @@ function renderEducation() {
     range.className = "job__range";
     const start = edu.start || "";
     const end = edu.end || "";
-    range.textContent = start && end ? `${start} — ${end}` : start || end;
+    range.textContent = start && end ? `${start} - ${end}` : start || end;
 
     top.appendChild(left);
     top.appendChild(range);
@@ -800,7 +742,7 @@ function renderCertificates() {
     const sub = document.createElement("p");
     sub.className = "cert__sub";
     const parts = [cert.issuer, cert.date].filter(Boolean);
-    sub.textContent = parts.join(" • ");
+    sub.textContent = parts.join(" | ");
 
     meta.appendChild(title);
     meta.appendChild(sub);
@@ -836,6 +778,8 @@ function projectMatches(project, query) {
   if (!query) return true;
   const blob = [
     project.title,
+    project.kicker,
+    project.status,
     project.description,
     ...(project.tags || []),
     project.repo,
@@ -860,19 +804,44 @@ function renderProjects(query = "") {
 
   for (const project of filtered) {
     const card = document.createElement("article");
-    card.className = "card project";
+    card.className = `card project${project.featured ? " project--featured" : ""}`;
 
-    if (project.image) {
-      const img = document.createElement("img");
-      img.className = "project__img";
-      img.loading = "lazy";
-      img.src = project.image;
-      img.alt = project.title ? `${project.title} screenshot` : "Project screenshot";
-      card.appendChild(img);
+    const media = document.createElement("div");
+    media.className = "project__media";
+
+    if (project.status) {
+      const status = document.createElement("span");
+      status.className = "project__status";
+      status.textContent = project.status;
+      media.appendChild(status);
+    }
+
+    const img = document.createElement("img");
+    img.className = "project__img";
+    img.loading = "lazy";
+    img.src = project.image || projectPlaceholderDataUrl(project.title);
+    img.alt = project.title ? `${project.title} screenshot` : "Project screenshot";
+    img.addEventListener("error", () => {
+      img.src = projectPlaceholderDataUrl(project.title);
+    });
+    media.appendChild(img);
+
+    const body = document.createElement("div");
+    body.className = "project__body";
+
+    const head = document.createElement("div");
+    head.className = "project__head";
+
+    if (project.kicker) {
+      const kicker = document.createElement("p");
+      kicker.className = "project__kicker";
+      kicker.textContent = project.kicker;
+      head.appendChild(kicker);
     }
 
     const h3 = document.createElement("h3");
     h3.textContent = project.title || "";
+    head.appendChild(h3);
 
     const p = document.createElement("p");
     p.textContent = project.description || "";
@@ -903,8 +872,8 @@ function renderProjects(query = "") {
 
     const actions = document.createElement("div");
     actions.className = "project__actions";
-    if (project.repo) actions.appendChild(createButton("Repo", project.repo, false));
-    if (project.live) actions.appendChild(createButton("Live Demo", project.live, true));
+    if (project.repo) actions.appendChild(createButton("Source Code", project.repo, false));
+    if (project.live) actions.appendChild(createButton("View Live Project", project.live, true));
     if ((project.images || []).length) {
       const btn = document.createElement("button");
       btn.type = "button";
@@ -916,13 +885,13 @@ function renderProjects(query = "") {
       actions.appendChild(btn);
     }
 
-    card.appendChild(h3);
-    card.appendChild(p);
-    if (project.overview) {
-      // Render overview after the buttons so actions stay visible even when expanded.
-    }
-    if ((project.tags || []).length) card.appendChild(tags);
-    if (actions.childNodes.length) card.appendChild(actions);
+    body.appendChild(head);
+    body.appendChild(p);
+    if ((project.tags || []).length) body.appendChild(tags);
+    if (actions.childNodes.length) body.appendChild(actions);
+
+    card.appendChild(media);
+    card.appendChild(body);
     if (project.overview) card.appendChild(createOverviewDetails(project.overview));
 
     root.appendChild(card);
@@ -938,7 +907,7 @@ function buildMailto({ to, subject, body }) {
 }
 
 function init() {
-  document.title = `${profile.name} — Portfolio`;
+  document.title = `${profile.name} - Portfolio`;
 
   setText("location", profile.location);
   setText("name", profile.name);
@@ -954,7 +923,7 @@ function init() {
   if (profile.links.email && profile.links.email.trim()) {
     emailCta.href = buildMailto({
       to: profile.links.email,
-      subject: `Portfolio Inquiry — ${profile.name}`,
+      subject: `Portfolio Inquiry - ${profile.name}`,
       body: `Hi ${profile.name},\n\nI saw your portfolio and would like to connect.\n\nMy message:\n`,
     });
   } else {
@@ -993,7 +962,8 @@ function init() {
   });
 
   const year = new Date().getFullYear();
-  $("copyright").textContent = `© ${year} ${profile.name}`;
+  $("copyright").textContent = `(c) ${year} ${profile.name}`;
 }
 
 init();
+

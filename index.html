@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="dark" />
     <title>Portfolio</title>
     <meta
       name="description"
@@ -34,6 +34,7 @@
     <main id="top" class="container main">
       <section class="hero">
         <div class="hero__left">
+          <p class="hero__kicker muted">Junior Developer Portfolio</p>
           <p id="location" class="muted"></p>
           <h1 id="name" class="title"></h1>
           <p id="role" class="subtitle"></p>
@@ -43,11 +44,7 @@
             <a id="github" class="btn btn--ghost" target="_blank" rel="noreferrer"
               >GitHub</a
             >
-            <a
-              id="linkedin"
-              class="btn btn--ghost"
-              target="_blank"
-              rel="noreferrer"
+            <a id="linkedin" class="btn btn--ghost" target="_blank" rel="noreferrer"
               >LinkedIn</a
             >
             <a id="resume" class="btn btn--ghost" target="_blank" rel="noreferrer"
@@ -62,7 +59,7 @@
       <section id="about" class="section">
         <div class="section__title">
           <h2>About</h2>
-          <p class="muted">A short introduction.</p>
+          <p class="muted">Who I am, what I build, and how I work.</p>
         </div>
         <div class="card">
           <p id="aboutText" class="prose"></p>
@@ -72,7 +69,7 @@
       <section id="experience" class="section">
         <div class="section__title">
           <h2>Experience</h2>
-          <p class="muted">Your job history and achievements.</p>
+          <p class="muted">Hands-on support and development experience.</p>
         </div>
         <div id="experienceList" class="stack"></div>
       </section>
@@ -80,7 +77,7 @@
       <section id="education" class="section">
         <div class="section__title">
           <h2>Education</h2>
-          <p class="muted">School and degree.</p>
+          <p class="muted">Academic background and foundation.</p>
         </div>
         <div id="educationList" class="stack"></div>
       </section>
@@ -88,7 +85,7 @@
       <section id="certificates" class="section">
         <div class="section__title">
           <h2>Certificates</h2>
-          <p class="muted">Training, virtual experience programs, and badges.</p>
+          <p class="muted">Training programs and technical learning records.</p>
         </div>
         <div id="certificateGrid" class="grid grid--cert"></div>
       </section>
@@ -97,10 +94,10 @@
         <div class="section__header">
           <div class="section__title">
             <h2>Projects</h2>
-            <p class="muted">Search by keyword.</p>
+            <p class="muted">Selected work. Search by stack or keyword.</p>
           </div>
           <label class="search" aria-label="Search projects">
-            <input id="projectSearch" type="search" placeholder="Search projects..." />
+            <input id="projectSearch" type="search" placeholder="Search projects or tech..." />
           </label>
         </div>
         <div id="projectGrid" class="grid"></div>
@@ -110,7 +107,7 @@
       <section id="skills" class="section">
         <div class="section__title">
           <h2>Skills</h2>
-          <p class="muted">Tools and technologies.</p>
+          <p class="muted">Core tools and technologies I use.</p>
         </div>
         <div id="skillChips" class="chips"></div>
       </section>
@@ -118,7 +115,7 @@
       <section id="contact" class="section">
         <div class="section__title">
           <h2>Contact</h2>
-          <p class="muted">Sends an email using your mail app.</p>
+          <p class="muted">Send a direct email from your preferred mail app.</p>
         </div>
         <div class="card">
           <form id="contactForm" class="form">
@@ -147,12 +144,12 @@
       <footer class="footer">
         <p>
           <span id="copyright"></span>
-          <span class="muted">•</span>
+          <span class="muted">|</span>
           <span class="muted">Portfolio website</span>
         </p>
       </footer>
     </main>
 
-    <script src="script.js?v=20260309-2"></script>
+    <script src="script.js?v=20260328-2"></script>
   </body>
 </html>
