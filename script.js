@@ -222,6 +222,51 @@ const profile = {
       live: "https://frontend-web-three-alpha.vercel.app/login?next=%2Fportfolio",
     },
     {
+      status: "Thesis Project",
+      kicker: "Robotics and Automation",
+      title: "Firefighter Robot Thesis Project",
+      description:
+        "A capstone robotics project focused on rapid fire-response support, built by our graduating team and featured in local media coverage.",
+      image: "assets/firefighter-robot/thumbnail.jpg",
+      images: ["assets/firefighter-robot/thumbnail.jpg"],
+      links: [
+        {
+          label: "News Article",
+          url: "https://newsinfo.inquirer.net/1805166/watch-graduating-students-make-firefighter-robot-thesis-project-inqstories",
+        },
+        {
+          label: "Watch Video",
+          url: "https://youtu.be/NI_17qHTkfI?si=sHrKAo1k91bmvpPN",
+          primary: true,
+        },
+      ],
+      overview: {
+        purpose:
+          "This thesis project demonstrates practical robotics problem-solving for emergency scenarios using a student-built firefighter support robot.",
+        includes: [
+          "Graduating-team thesis implementation and demonstration",
+          "Public media coverage and project presentation",
+          "Prototype robot design focused on fire-response assistance",
+          "Real-world testing context for reliability and usability insights",
+        ],
+        techStack: ["Embedded Systems", "Robotics", "Sensors", "Control Logic"],
+        flow: [
+          "Design and assemble the firefighter robot prototype",
+          "Integrate control and sensor behavior for task execution",
+          "Validate behavior in demonstration and thesis scenarios",
+          "Publish project outcomes through news and video coverage",
+        ],
+        references: [
+          "News article and YouTube coverage links are included in the project buttons.",
+        ],
+        transparency:
+          "This portfolio entry highlights the thesis and showcase outcomes. Final production readiness would require additional iterations, safety validation, and operational hardening.",
+      },
+      tags: ["Robotics", "Thesis", "Automation", "Team Project"],
+      repo: "",
+      live: "",
+    },
+    {
       status: "Case Study",
       kicker: "POS Workflow",
       title: "POS Web App",
@@ -424,6 +469,7 @@ function createOverviewDetails(overview) {
     ["Interfaces and operations", overview.interfaces],
     ["Development approach", overview.approach],
     ["Skills required", overview.skills],
+    ["References", overview.references],
   ];
 
   for (const [title, items] of listSections) {
@@ -776,12 +822,14 @@ function renderCertificates() {
 
 function projectMatches(project, query) {
   if (!query) return true;
+  const actionLinks = (project.links || []).flatMap((link) => [link.label, link.url]);
   const blob = [
     project.title,
     project.kicker,
     project.status,
     project.description,
     ...(project.tags || []),
+    ...actionLinks,
     project.repo,
     project.live,
   ]
@@ -872,6 +920,12 @@ function renderProjects(query = "") {
 
     const actions = document.createElement("div");
     actions.className = "project__actions";
+    for (const link of project.links || []) {
+      const label = String(link?.label || "").trim();
+      const url = String(link?.url || "").trim();
+      if (!label || !url) continue;
+      actions.appendChild(createButton(label, url, Boolean(link?.primary)));
+    }
     if (project.repo) actions.appendChild(createButton("Source Code", project.repo, false));
     if (project.live) actions.appendChild(createButton("View Live Project", project.live, true));
     if ((project.images || []).length) {

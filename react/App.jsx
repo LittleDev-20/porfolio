@@ -24,6 +24,26 @@ const profile = {
       repo: "",
       live: "https://frontend-web-three-alpha.vercel.app/login?next=%2Fportfolio",
     },
+    {
+      title: "Firefighter Robot Thesis Project",
+      description:
+        "A graduating-team robotics thesis project for firefighter support, recognized through public news coverage and demo video.",
+      tags: ["Robotics", "Thesis", "Automation", "Team Project"],
+      image: "assets/firefighter-robot/thumbnail.jpg",
+      repo: "",
+      live: "",
+      links: [
+        {
+          label: "News Article",
+          url: "https://newsinfo.inquirer.net/1805166/watch-graduating-students-make-firefighter-robot-thesis-project-inqstories",
+        },
+        {
+          label: "Watch Video",
+          url: "https://youtu.be/NI_17qHTkfI?si=sHrKAo1k91bmvpPN",
+          primary: true,
+        },
+      ],
+    },
   ],
 };
 
@@ -58,8 +78,11 @@ export default function App() {
     const q = query.trim().toLowerCase();
     if (!q) return profile.projects;
     return profile.projects.filter((p) => {
+      const linked = (p.links || [])
+        .map((it) => `${it.label || ""} ${it.url || ""}`)
+        .join(" ");
       const blob =
-        `${p.title} ${p.description} ${(p.tags || []).join(" ")} ${p.repo || ""} ${p.live || ""}`.toLowerCase();
+        `${p.title} ${p.description} ${(p.tags || []).join(" ")} ${linked} ${p.repo || ""} ${p.live || ""}`.toLowerCase();
       return blob.includes(q);
     });
   }, [query]);
@@ -140,6 +163,21 @@ export default function App() {
                 </div>
 
                 <div className="flex flex-wrap gap-3 mt-5">
+                  {(p.links || []).map((link) => (
+                    <a
+                      key={`${p.title}-${link.label}`}
+                      href={link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={
+                        link.primary
+                          ? "px-3 py-2 rounded-lg bg-white text-black hover:bg-white/90 transition font-medium"
+                          : "px-3 py-2 rounded-lg border border-white/15 hover:border-white/25 hover:bg-white/5 transition"
+                      }
+                    >
+                      {link.label}
+                    </a>
+                  ))}
                   {p.repo ? (
                     <a
                       href={p.repo}
