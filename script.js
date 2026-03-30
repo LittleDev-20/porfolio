@@ -184,6 +184,16 @@ const profile = {
       title: "Atlas TradeOps Frontend",
       description:
         "A dark-themed operator console frontend for live trading workflows, including secure access, portfolio health snapshots, risk panels, and assistant support UI.",
+      role: "Frontend Developer",
+      published: "March 2026",
+      fullDescription:
+        "Designed and implemented a clean, dark-themed operations console for trading workflows. The interface prioritizes risk visibility, account-health context, and operator decision support through structured card groups, clear hierarchy, and fast-read layouts.",
+      deliverables: [
+        "Authentication and dashboard interface design",
+        "Metric cards for account and exposure monitoring",
+        "Risk-panel and decision-feed UI composition",
+        "Responsive layouts for desktop and mobile review",
+      ],
       image: "assets/atlas-tradeops/shot-04.png",
       images: [
         "assets/atlas-tradeops/shot-01.png",
@@ -227,6 +237,15 @@ const profile = {
       title: "Firefighter Robot Thesis Project",
       description:
         "A capstone robotics project focused on rapid fire-response support, built by our graduating team and featured in local media coverage.",
+      role: "Thesis Team Member (Robotics Development)",
+      published: "August 2023",
+      fullDescription:
+        "A graduating-team thesis project focused on building and presenting a firefighter support robot prototype. The project combined mechanical build work, control logic, and demonstration-driven validation, and was featured in both news and video coverage.",
+      deliverables: [
+        "Prototype firefighter robot assembly and testing",
+        "Thesis presentation and technical documentation",
+        "Public showcase and media-facing project demonstration",
+      ],
       image: "assets/firefighter-robot/thumbnail.jpg",
       images: ["assets/firefighter-robot/thumbnail.jpg"],
       links: [
@@ -271,6 +290,16 @@ const profile = {
       kicker: "POS Workflow",
       title: "POS Web App",
       description: "A modern POS interface with tickets, orders, and dashboard pages.",
+      role: "Frontend Developer",
+      published: "2025",
+      fullDescription:
+        "Built a point-of-sale user interface focused on speed, clarity, and cashier workflow efficiency, with a clean layout for order management and operational visibility.",
+      deliverables: [
+        "Order and ticket UI flow",
+        "Checkout and totals interaction patterns",
+        "Sales dashboard page composition",
+        "Responsive component styling",
+      ],
       image: "assets/pos/shot-01.png",
       images: [
         "assets/pos/shot-01.png",
@@ -318,6 +347,15 @@ const profile = {
       title: "Responsive Website UI",
       description:
         "A multi-section responsive website build focused on clean composition, scalable layout patterns, and reusable front-end components.",
+      role: "Frontend Developer",
+      published: "2025",
+      fullDescription:
+        "Implemented a multi-section front-end website with reusable layout blocks, responsive spacing behavior, and consistent design language across pages.",
+      deliverables: [
+        "Responsive landing and content section layouts",
+        "Reusable UI block patterns",
+        "Cross-device spacing and typography refinement",
+      ],
       image: "assets/website/shot-03.png",
       images: [
         "assets/website/shot-03.png",
@@ -387,6 +425,19 @@ function createButton(label, href, isPrimary = false) {
   a.target = "_blank";
   a.rel = "noreferrer";
   return a;
+}
+
+function getProjectLinks(project) {
+  const list = [];
+  for (const link of project.links || []) {
+    const label = String(link?.label || "").trim();
+    const url = String(link?.url || "").trim();
+    if (!label || !url) continue;
+    list.push({ label, url, primary: Boolean(link?.primary) });
+  }
+  if (project.repo) list.push({ label: "Source Code", url: project.repo, primary: false });
+  if (project.live) list.push({ label: "View Live Project", url: project.live, primary: true });
+  return list;
 }
 
 function svgPlaceholderDataUrl(title) {
@@ -615,6 +666,270 @@ function openLightbox({ title, images, startIndex }) {
   close.focus();
 }
 
+function openProjectModal(project) {
+  if (!project) return;
+
+  const gallery = (project.images || []).filter(Boolean);
+  if (!gallery.length && project.image) gallery.push(project.image);
+  if (!gallery.length) gallery.push(projectPlaceholderDataUrl(project.title));
+
+  const actionLinks = getProjectLinks(project);
+  const skills = (
+    project.skills ||
+    project.techStack ||
+    project.tags ||
+    project.overview?.techStack ||
+    []
+  ).filter(Boolean);
+  const deliverables = (
+    project.deliverables ||
+    project.overview?.includes ||
+    project.overview?.flow ||
+    []
+  ).filter(Boolean);
+
+  let index = 0;
+  const previousOverflow = document.body.style.overflow;
+
+  const overlay = document.createElement("div");
+  overlay.className = "project-modal";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+
+  const panel = document.createElement("div");
+  panel.className = "project-modal__panel";
+
+  const top = document.createElement("div");
+  top.className = "project-modal__top";
+
+  const title = document.createElement("div");
+  title.className = "project-modal__title";
+  title.textContent = project.title || "Project details";
+
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "btn btn--ghost";
+  close.textContent = "Close";
+
+  top.appendChild(title);
+  top.appendChild(close);
+
+  const content = document.createElement("div");
+  content.className = "project-modal__content";
+
+  const left = document.createElement("div");
+  left.className = "project-modal__left";
+
+  const right = document.createElement("div");
+  right.className = "project-modal__right";
+
+  const intro = document.createElement("p");
+  intro.className = "project-modal__description";
+  intro.textContent = project.fullDescription || project.description || "";
+  left.appendChild(intro);
+
+  const info = document.createElement("div");
+  info.className = "project-modal__info";
+
+  function addInfoRow(label, value) {
+    if (!value) return;
+    const row = document.createElement("div");
+    row.className = "project-modal__row";
+
+    const l = document.createElement("span");
+    l.className = "project-modal__label";
+    l.textContent = label;
+
+    const v = document.createElement("span");
+    v.className = "project-modal__value";
+    v.textContent = value;
+
+    row.appendChild(l);
+    row.appendChild(v);
+    info.appendChild(row);
+  }
+
+  addInfoRow("My role", project.role || "Frontend Developer");
+  addInfoRow("Published", project.published || "");
+  addInfoRow("Project type", project.status || "");
+  if (info.childNodes.length) left.appendChild(info);
+
+  if (skills.length) {
+    const block = document.createElement("section");
+    block.className = "project-modal__block";
+
+    const h = document.createElement("h4");
+    h.className = "project-modal__heading";
+    h.textContent = "Skills / Tech Stack";
+
+    const wrap = document.createElement("div");
+    wrap.className = "project-modal__chips";
+    for (const skill of skills) {
+      const chip = document.createElement("span");
+      chip.className = "project-modal__chip";
+      chip.textContent = skill;
+      wrap.appendChild(chip);
+    }
+
+    block.appendChild(h);
+    block.appendChild(wrap);
+    left.appendChild(block);
+  }
+
+  if (deliverables.length) {
+    const block = document.createElement("section");
+    block.className = "project-modal__block";
+
+    const h = document.createElement("h4");
+    h.className = "project-modal__heading";
+    h.textContent = "Deliverables";
+
+    const ul = document.createElement("ul");
+    ul.className = "project-modal__list";
+    for (const item of deliverables) {
+      const li = document.createElement("li");
+      li.textContent = item;
+      ul.appendChild(li);
+    }
+
+    block.appendChild(h);
+    block.appendChild(ul);
+    left.appendChild(block);
+  }
+
+  if (actionLinks.length) {
+    const block = document.createElement("section");
+    block.className = "project-modal__block";
+
+    const h = document.createElement("h4");
+    h.className = "project-modal__heading";
+    h.textContent = "Useful Links";
+
+    const linkWrap = document.createElement("div");
+    linkWrap.className = "project__actions";
+    for (const item of actionLinks) {
+      linkWrap.appendChild(createButton(item.label, item.url, item.primary));
+    }
+
+    block.appendChild(h);
+    block.appendChild(linkWrap);
+    left.appendChild(block);
+  }
+
+  const imageWrap = document.createElement("div");
+  imageWrap.className = "project-modal__image-wrap";
+
+  const image = document.createElement("img");
+  image.className = "project-modal__image";
+  image.alt = project.title ? `${project.title} preview` : "Project preview";
+
+  const counter = document.createElement("div");
+  counter.className = "project-modal__counter muted";
+
+  const nav = document.createElement("div");
+  nav.className = "project-modal__nav";
+
+  const prev = document.createElement("button");
+  prev.type = "button";
+  prev.className = "btn btn--ghost";
+  prev.textContent = "Prev";
+
+  const next = document.createElement("button");
+  next.type = "button";
+  next.className = "btn btn--ghost";
+  next.textContent = "Next";
+
+  nav.appendChild(prev);
+  nav.appendChild(next);
+
+  const thumbs = document.createElement("div");
+  thumbs.className = "project-modal__thumbs";
+
+  function renderImage() {
+    image.src = gallery[index];
+    counter.textContent = `${index + 1} / ${gallery.length}`;
+    prev.disabled = index === 0;
+    next.disabled = index >= gallery.length - 1;
+    thumbs.querySelectorAll("button").forEach((btn, i) => {
+      btn.classList.toggle("project-modal__thumb--active", i === index);
+    });
+  }
+
+  gallery.forEach((src, i) => {
+    const thumb = document.createElement("button");
+    thumb.type = "button";
+    thumb.className = "project-modal__thumb";
+    thumb.addEventListener("click", () => {
+      index = i;
+      renderImage();
+    });
+
+    const thumbImg = document.createElement("img");
+    thumbImg.src = src;
+    thumbImg.alt = project.title ? `${project.title} screenshot ${i + 1}` : "Screenshot";
+    thumbImg.loading = "lazy";
+    thumbImg.addEventListener("error", () => {
+      thumbImg.src = projectPlaceholderDataUrl(project.title);
+    });
+    thumb.appendChild(thumbImg);
+    thumbs.appendChild(thumb);
+  });
+
+  prev.addEventListener("click", () => {
+    if (index === 0) return;
+    index -= 1;
+    renderImage();
+  });
+  next.addEventListener("click", () => {
+    if (index >= gallery.length - 1) return;
+    index += 1;
+    renderImage();
+  });
+
+  imageWrap.appendChild(image);
+  right.appendChild(imageWrap);
+  right.appendChild(counter);
+  if (gallery.length > 1) {
+    right.appendChild(nav);
+    right.appendChild(thumbs);
+  }
+
+  content.appendChild(left);
+  content.appendChild(right);
+  panel.appendChild(top);
+  panel.appendChild(content);
+  overlay.appendChild(panel);
+
+  function cleanup() {
+    document.removeEventListener("keydown", onKeyDown);
+    overlay.remove();
+    document.body.style.overflow = previousOverflow;
+  }
+
+  function onKeyDown(e) {
+    if (e.key === "Escape") cleanup();
+    if (e.key === "ArrowLeft" && index > 0) {
+      index -= 1;
+      renderImage();
+    }
+    if (e.key === "ArrowRight" && index < gallery.length - 1) {
+      index += 1;
+      renderImage();
+    }
+  }
+
+  close.addEventListener("click", cleanup);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) cleanup();
+  });
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = "hidden";
+  document.addEventListener("keydown", onKeyDown);
+  renderImage();
+  close.focus();
+}
+
 function renderSkills() {
   const root = $("skillChips");
   root.innerHTML = "";
@@ -822,12 +1137,17 @@ function renderCertificates() {
 
 function projectMatches(project, query) {
   if (!query) return true;
-  const actionLinks = (project.links || []).flatMap((link) => [link.label, link.url]);
+  const actionLinks = getProjectLinks(project).flatMap((link) => [link.label, link.url]);
   const blob = [
     project.title,
     project.kicker,
     project.status,
     project.description,
+    project.fullDescription,
+    project.role,
+    project.published,
+    ...(project.techStack || []),
+    ...(project.deliverables || []),
     ...(project.tags || []),
     ...actionLinks,
     project.repo,
@@ -874,6 +1194,19 @@ function renderProjects(query = "") {
     });
     media.appendChild(img);
 
+    const openModal = () => openProjectModal(project);
+    media.classList.add("project__media--interactive");
+    media.tabIndex = 0;
+    media.setAttribute("role", "button");
+    media.setAttribute("aria-label", `Open ${project.title || "project"} details`);
+    media.addEventListener("click", openModal);
+    media.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openModal();
+      }
+    });
+
     const body = document.createElement("div");
     body.className = "project__body";
 
@@ -893,6 +1226,10 @@ function renderProjects(query = "") {
 
     const p = document.createElement("p");
     p.textContent = project.description || "";
+
+    const meta = document.createElement("p");
+    meta.className = "project__meta";
+    meta.textContent = [project.role, project.published].filter(Boolean).join(" | ");
 
     const tags = document.createElement("div");
     tags.className = "tags";
@@ -920,33 +1257,29 @@ function renderProjects(query = "") {
 
     const actions = document.createElement("div");
     actions.className = "project__actions";
-    for (const link of project.links || []) {
-      const label = String(link?.label || "").trim();
-      const url = String(link?.url || "").trim();
-      if (!label || !url) continue;
-      actions.appendChild(createButton(label, url, Boolean(link?.primary)));
-    }
-    if (project.repo) actions.appendChild(createButton("Source Code", project.repo, false));
-    if (project.live) actions.appendChild(createButton("View Live Project", project.live, true));
-    if ((project.images || []).length) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "btn btn--ghost";
-      btn.textContent = "Screenshots";
-      btn.addEventListener("click", () =>
-        openLightbox({ title: project.title, images: project.images, startIndex: 0 })
-      );
-      actions.appendChild(btn);
+    const detailsBtn = document.createElement("button");
+    detailsBtn.type = "button";
+    detailsBtn.className = "btn btn--ghost";
+    detailsBtn.textContent = "Open Details";
+    detailsBtn.addEventListener("click", openModal);
+    actions.appendChild(detailsBtn);
+
+    for (const item of getProjectLinks(project)) {
+      actions.appendChild(createButton(item.label, item.url, item.primary));
     }
 
     body.appendChild(head);
     body.appendChild(p);
+    if (meta.textContent) body.appendChild(meta);
     if ((project.tags || []).length) body.appendChild(tags);
     if (actions.childNodes.length) body.appendChild(actions);
 
     card.appendChild(media);
     card.appendChild(body);
-    if (project.overview) card.appendChild(createOverviewDetails(project.overview));
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a, button, input, textarea, summary")) return;
+      openModal();
+    });
 
     root.appendChild(card);
   }
